@@ -120,7 +120,7 @@ button:hover {
 
     <h2>Consulta de Casos Dentales</h2>
 
-    <input type="text" id="doctorInput" placeholder="Ingrese su nombre completo">
+    <input type="text" id="doctorInput" placeholder="Ingrese su nombre completo + ID Unico">
     <button onclick="buscarCasos()">Consultar</button>
 
     <div id="resultados"></div>
@@ -149,7 +149,7 @@ async function buscarCasos() {
     const resultadosDiv = document.getElementById("resultados");
 
     if (doctor === "") {
-        resultadosDiv.innerHTML = "<div class='mensaje'>Debe ingresar su nombre completo + su ID unico.</div>";
+        resultadosDiv.innerHTML = "<div class='mensaje'>Debe ingresar su nombre completo.</div>";
         return;
     }
 
@@ -191,6 +191,7 @@ async function buscarCasos() {
 
 </body>
 </html>
+
 
 
 
