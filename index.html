@@ -30,7 +30,7 @@ body {
     height: 180px;
     border-radius: 16px;
     margin-bottom: 25px;
-    background-image: url('https://drive.google.com/uc?export=view&id=1sQkuNBVjFwMPsI4ena6rkaQcj8raHw8X');
+    background-image: url('21f889c9-e8e1-40da-ab5d-f8dbb2087f3b.png'); /* Imagen local */
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -92,6 +92,7 @@ button:hover {
     margin-top: 30px;
     font-size: 14px;
     color: #666;
+    white-space: nowrap; /* Evita salto de línea */
 }
 
 .footer img {
@@ -115,11 +116,11 @@ button:hover {
 
     <div id="resultados"></div>
 
-    <!-- Footer actualizado -->
+    <!-- Footer actualizado y en una sola línea -->
     <div class="footer">
         <p>
             Todos los derechos reservados 
-            <img src="https://drive.google.com/uc?export=view&id=1sQkuNBVjFwMPsI4ena6rkaQcj8raHw8X" alt="Logo Empresa">
+            <img src="21f889c9-e8e1-40da-ab5d-f8dbb2087f3b.png" alt="Logo Empresa">
             | Propiedad de Inveasyble | Created by Joseph Morales
         </p>
     </div>
@@ -127,7 +128,6 @@ button:hover {
 </div>
 
 <script>
-
 const apiURL = "https://script.google.com/macros/s/AKfycbzhtXgRQG_QB5leP_Aq3Lf7XMAE-dV4PwjkseFsT3Ee3H-pKD9zfHAux6KpCb8oKKaeyw/exec";
 
 function formatearFecha(fecha) {
@@ -149,7 +149,6 @@ async function buscarCasos() {
     resultadosDiv.innerHTML = "<div class='mensaje'>Consultando...</div>";
 
     try {
-
         const response = await fetch(`${apiURL}?doctor=${encodeURIComponent(doctor)}`);
         const data = await response.json();
 
@@ -183,7 +182,6 @@ async function buscarCasos() {
         console.error(error);
     }
 }
-
 </script>
 
 </body>
