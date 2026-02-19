@@ -6,7 +6,6 @@
 <title>Portal Clínico Dental</title>
 
 <style>
-
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -85,7 +84,6 @@ button:hover {
     font-weight: 500;
     color: #444;
 }
-
 </style>
 </head>
 
@@ -105,11 +103,9 @@ button:hover {
 </div>
 
 <script>
-
 const apiURL = "https://script.google.com/macros/s/AKfycbxqV5vyHN1tQlcTMcFcJ_4CYYW3BJI1kxUP_wRFKHmtkWW2t1h68uvaj91NhROKYQiebw/exec";
 
 async function buscarCasos() {
-
     const doctor = document.getElementById("doctorInput").value.trim();
     const resultadosDiv = document.getElementById("resultados");
 
@@ -121,7 +117,6 @@ async function buscarCasos() {
     resultadosDiv.innerHTML = "<div class='mensaje'>Consultando...</div>";
 
     try {
-
         const response = await fetch(`${apiURL}?doctor=${encodeURIComponent(doctor)}`);
         const data = await response.json();
 
@@ -133,14 +128,16 @@ async function buscarCasos() {
         let html = "";
 
         data.forEach(item => {
-
             html += `
                 <div class="caso">
                     <div><span class="label">Paciente:</span> ${item.paciente}</div>
+                    <div><span class="label">Doctor:</span> ${item.doctor}</div>
                     <div><span class="label">Fecha de entrega:</span> ${item.fechaEntrega}</div>
-                    <div><span class="label">Impresión Upper:</span> ${item.impresionUpper}</div>
-                    <div><span class="label">Impresión Lower:</span> ${item.impresionLower}</div>
-                    <div><span class="label">Estado:</span> ${item.estado}</div>
+                    <div><span class="label">Arco Superior:</span> ${item.arcoSuperior}</div>
+                    <div><span class="label">Arco Inferior:</span> ${item.arcoInferior}</div>
+                    <div><span class="label">Cantidad de alineadores U/L:</span> ${item.cantidadAlineadores}</div>
+                    <div><span class="label">Planes:</span> ${item.planes}</div>
+                    <div><span class="label">Estatus del caso:</span> ${item.estatus}</div>
                 </div>
             `;
         });
@@ -149,9 +146,9 @@ async function buscarCasos() {
 
     } catch (error) {
         resultadosDiv.innerHTML = "<div class='mensaje'>Error al conectar con el servidor.</div>";
+        console.error(error);
     }
 }
-
 </script>
 
 </body>
