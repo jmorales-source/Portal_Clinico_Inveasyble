@@ -15,6 +15,7 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+
 .container {
     background: #ffffff;
     width: 95%;
@@ -23,6 +24,7 @@ body {
     border-radius: 18px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.3);
 }
+
 .hero-image {
     width: 100%;
     height: 180px;
@@ -32,11 +34,13 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 h2 {
     text-align: center;
     color: #0f2027;
     margin-bottom: 25px;
 }
+
 input {
     width: 100%;
     padding: 12px;
@@ -45,6 +49,7 @@ input {
     font-size: 15px;
     margin-bottom: 15px;
 }
+
 button {
     width: 100%;
     padding: 12px;
@@ -56,9 +61,11 @@ button {
     cursor: pointer;
     margin-bottom: 20px;
 }
+
 button:hover {
     background: #203a43;
 }
+
 .caso {
     background: #f4f9fb;
     padding: 16px;
@@ -66,10 +73,12 @@ button:hover {
     margin-bottom: 15px;
     border-left: 5px solid #2c5364;
 }
+
 .label {
     font-weight: bold;
     color: #203a43;
 }
+
 .mensaje {
     text-align: center;
     font-weight: 500;
@@ -95,7 +104,13 @@ button:hover {
 
 <script>
 
-const apiURL = "https://script.google.com/macros/s/AKfycbxqV5vyHN1tQlcTMcFcJ_4CYYW3BJI1kxUP_wRFKHmtkWW2t1h68uvaj91NhROKYQiebw/exec";
+const apiURL = "https://script.google.com/macros/s/AKfycbzhtXgRQG_QB5leP_Aq3Lf7XMAE-dV4PwjkseFsT3Ee3H-pKD9zfHAux6KpCb8oKKaeyw/exec";
+
+function formatearFecha(fecha) {
+    if (!fecha) return "";
+    const f = new Date(fecha);
+    return f.toLocaleDateString("es-CR");
+}
 
 async function buscarCasos() {
 
@@ -115,7 +130,7 @@ async function buscarCasos() {
         const data = await response.json();
 
         if (!data || data.length === 0) {
-            resultadosDiv.innerHTML = "<div class='mensaje'>No se encontraron casos para ese nombre exacto.</div>";
+            resultadosDiv.innerHTML = "<div class='mensaje'>No se encontraron casos.</div>";
             return;
         }
 
@@ -127,7 +142,7 @@ async function buscarCasos() {
                 <div class="caso">
                     <div><span class="label">Paciente:</span> ${item.paciente || ""}</div>
                     <div><span class="label">Doctor:</span> ${item.doctor || ""}</div>
-                    <div><span class="label">Fecha de entrega:</span> ${item.fechaEntrega || ""}</div>
+                    <div><span class="label">Fecha de entrega:</span> ${formatearFecha(item.fechaEntrega)}</div>
                     <div><span class="label">Arco Superior:</span> ${item.arcoSuperior || ""}</div>
                     <div><span class="label">Arco Inferior:</span> ${item.arcoInferior || ""}</div>
                     <div><span class="label">Cantidad de alineadores U/L:</span> ${item.cantidadAlineadores || ""}</div>
@@ -141,6 +156,7 @@ async function buscarCasos() {
 
     } catch (error) {
         resultadosDiv.innerHTML = "<div class='mensaje'>Error al conectar con el servidor.</div>";
+        console.error(error);
     }
 }
 
