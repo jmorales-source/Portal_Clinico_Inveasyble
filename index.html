@@ -68,44 +68,6 @@ button:hover {
   background: #203a43;
 }
 
-.footer {
-  text-align: center;
-  margin-top: auto;
-  font-size: 14px;
-  color: #fff;
-  padding: 20px;
-  background: #203a43;
-  width: 100%;
-}
-
-.fixed-left, .fixed-right {
-  position: fixed;
-  top: 35%;
-  width: 220px;
-}
-
-.fixed-left { left: 20px; }
-.fixed-right { right: 20px; }
-
-.fixed-left img, .fixed-right img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.material-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #2c5364;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
 .google-search {
   position: fixed;
   top: 15px;
@@ -120,26 +82,88 @@ button:hover {
   border-radius: 20px;
   border: none;
 }
+
+/* Menú lateral izquierdo */
+.side-links {
+  position: fixed;
+  left: 20px;
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.side-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.side-links a:hover {
+  text-decoration: underline;
+}
+
+/* Botón material */
+.material-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2c5364;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.footer-links {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: #203a43;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  margin-top: auto;
+  font-size: 14px;
+  color: #fff;
+  padding: 20px;
+  background: #203a43;
+  width: 100%;
+}
 </style>
 </head>
 
 <body>
 
-<!-- GOOGLE SEARCH -->
+<!-- Google -->
 <div class="google-search">
   <form action="https://www.google.com/search" method="GET" target="_blank">
     <input type="text" name="q" placeholder="Buscar en Google...">
   </form>
 </div>
 
-<!-- IMAGEN PLANES -->
-<div class="fixed-left">
-  <img src="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg">
-</div>
+<!-- Menú izquierdo -->
+<div class="side-links">
+  <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">
+    📦 Ver Planes de Tratamiento
+  </a>
 
-<!-- IMAGEN FLUJO -->
-<div class="fixed-right">
-  <img src="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Flujo%20de%20trabajo.jpeg">
+  <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Flujo%20de%20trabajo.jpeg" target="_blank">
+    🔄 Ver Flujo de Trabajo
+  </a>
 </div>
 
 <div class="container">
@@ -151,22 +175,23 @@ button:hover {
 
   <div id="resultados"></div>
 
-  <div style="margin-top:30px; text-align:center;">
+  <!-- Links abajo -->
+  <div class="footer-links">
     <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/T%C3%89RMINOS%20Y%20CONDICIONES%20INVEASYBLE.pdf" target="_blank">
-      📄 Términos y Condiciones
+      Términos y Condiciones
     </a>
-    <br><br>
+
     <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Contrato%20por%20servicios%20de%20ortodoncia%20con%20alineadores.pdf" target="_blank">
-      📄 Contrato de Ortodoncia
+      Contrato
     </a>
-    <br><br>
+
     <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Calculo%20de%20Alineadores.xlsx" target="_blank">
-      📅 Calendario de Alineadores
+      Calendario
     </a>
   </div>
 </div>
 
-<!-- MATERIAL RAR -->
+<!-- Material -->
 <a class="material-btn" 
 href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar" 
 target="_blank">
