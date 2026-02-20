@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
 }
 
+/* CONTENEDOR CENTRAL */
 .container {
   background: #ffffff;
   width: 95%;
@@ -68,26 +69,52 @@ button:hover {
   background: #203a43;
 }
 
-.google-search {
+/* GOOGLE BOX IZQUIERDA */
+.google-box {
   position: fixed;
-  top: 15px;
-  width: 100%;
+  top: 100px;
+  left: 20px;
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   text-align: center;
-  z-index: 1000;
 }
 
-.google-search input {
-  width: 300px;
+.google-box img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.google-box input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.google-box button {
+  width: 100%;
   padding: 8px;
   border-radius: 20px;
   border: none;
+  background: #4285F4;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-/* Menú lateral izquierdo */
+.google-box button:hover {
+  background: #3367d6;
+}
+
+/* LINKS LATERALES */
 .side-links {
   position: fixed;
   left: 20px;
-  top: 35%;
+  top: 320px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -104,7 +131,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Botón material */
+/* BOTÓN MATERIAL */
 .material-btn {
   position: fixed;
   bottom: 20px;
@@ -118,6 +145,11 @@ button:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+.material-btn:hover {
+  background: #203a43;
+}
+
+/* LINKS INFERIORES */
 .footer-links {
   margin-top: 30px;
   text-align: center;
@@ -134,6 +166,7 @@ button:hover {
   text-decoration: underline;
 }
 
+/* FOOTER */
 .footer {
   text-align: center;
   margin-top: auto;
@@ -148,14 +181,16 @@ button:hover {
 
 <body>
 
-<!-- Google -->
-<div class="google-search">
+<!-- GOOGLE -->
+<div class="google-box">
+  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
   <form action="https://www.google.com/search" method="GET" target="_blank">
     <input type="text" name="q" placeholder="Buscar en Google...">
+    <button type="submit">Buscar</button>
   </form>
 </div>
 
-<!-- Menú izquierdo -->
+<!-- MENÚ IZQUIERDO -->
 <div class="side-links">
   <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">
     📦 Ver Planes de Tratamiento
@@ -166,6 +201,7 @@ button:hover {
   </a>
 </div>
 
+<!-- CONTENIDO CENTRAL -->
 <div class="container">
   <div class="hero-image"></div>
   <h2>Consulta de Casos Dentales</h2>
@@ -175,7 +211,6 @@ button:hover {
 
   <div id="resultados"></div>
 
-  <!-- Links abajo -->
   <div class="footer-links">
     <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/T%C3%89RMINOS%20Y%20CONDICIONES%20INVEASYBLE.pdf" target="_blank">
       Términos y Condiciones
@@ -191,7 +226,7 @@ button:hover {
   </div>
 </div>
 
-<!-- Material -->
+<!-- MATERIAL -->
 <a class="material-btn" 
 href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar" 
 target="_blank">
