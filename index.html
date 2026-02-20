@@ -3,117 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Clínico Dental</title>
+<title>Consulta de Casos - Inveasyble</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
 }
 
-/* CONTENEDOR CENTRAL */
+/* CUADRO BLANCO */
 .container {
-  background: #ffffff;
-  width: 95%;
-  max-width: 620px;
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-  margin-top: 60px;
+    background: #f3f3f3;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
 }
 
-.hero-image {
-  width: 100%;
-  height: 180px;
-  border-radius: 16px;
-  margin-bottom: 25px;
-  background-image: url('https://github.com/jmorales-source/inveasyble-website-assets/blob/main/INVEASYBLE%20(1).png?raw=true');
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
+/* LOGO */
+.logo {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 25px;
 }
 
+/* TITULO */
 h2 {
-  text-align: center;
-  color: #0f2027;
-  margin-bottom: 25px;
+    margin-bottom: 20px;
+    color: #1b2c34;
 }
 
+/* INPUT */
 input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  margin-bottom: 15px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
+/* BOTON */
 button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #2c5364;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-  margin-bottom: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2c5364;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-  background: #203a43;
+    background: #1e3c4d;
 }
 
-/* SECCIÓN LINKS CENTRALES */
-.center-links {
-  text-align: center;
-  margin-top: 25px;
+/* LINKS ABAJO */
+.links {
+    margin-top: 35px;
+    text-align: center;
 }
 
-.center-links a {
-  display: block;
-  margin: 10px 0;
-  text-decoration: none;
-  font-weight: 500;
-  color: #2c5364;
+.links a {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
-.center-links a:hover {
-  text-decoration: underline;
-}
-
-/* BOTÓN MATERIAL */
-.material-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #2c5364;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.material-btn:hover {
-  background: #203a43;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  margin-top: auto;
-  font-size: 14px;
-  color: #fff;
-  padding: 20px;
-  background: #203a43;
-  width: 100%;
+.links a:hover {
+    color: #00c6ff;
 }
 </style>
 </head>
@@ -121,54 +91,45 @@ button:hover {
 <body>
 
 <div class="container">
-  <div class="hero-image"></div>
-  <h2>Consulta de Casos Dentales</h2>
 
-  <input type="text" id="doctorInput" placeholder="Ingrese su nombre completo + ID Unico">
-  <button onclick="buscarCasos()">Consultar</button>
+    <img class="logo"
+    src="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/fa90a0182b47a0065cd1d848e240fca9d6941ae6/InvEasyble-Logo-RGB.png"
+    alt="Inveasyble Logo">
 
-  <div id="resultados"></div>
+    <h2>Consulta de Casos Dentales</h2>
 
-  <!-- LINKS CENTRADOS -->
-  <div class="center-links">
+    <input type="text" placeholder="Ingrese nombre o código del caso">
 
-    <a href="https://inveasyble.com/enviar-caso-nuevo/" target="_blank">
-      📝 Formulario de Envío de Caso
-    </a>
+    <button>Consultar</button>
 
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">
-      📦 Ver Planes de Tratamiento
-    </a>
-
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Flujo%20de%20trabajo.jpeg" target="_blank">
-      🔄 Ver Flujo de Trabajo
-    </a>
-
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/T%C3%89RMINOS%20Y%20CONDICIONES%20INVEASYBLE.pdf" target="_blank">
-      📄 Términos y Condiciones
-    </a>
-
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Contrato%20por%20servicios%20de%20ortodoncia%20con%20alineadores.pdf" target="_blank">
-      📄 Contrato
-    </a>
-
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Calculo%20de%20Alineadores.xlsx" target="_blank">
-      📅 Calendario de Alineadores
-    </a>
-
-  </div>
 </div>
 
-<!-- MATERIAL -->
-<a class="material-btn" 
-href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar" 
-target="_blank">
-📂 Material de Mercadeo
-</a>
+<!-- TODO ESTO YA ESTA FUERA DEL CUADRO BLANCO -->
+<div class="links">
+    <a href="https://inveasyble.com/enviar-caso/" target="_blank">
+        📄 Formulario de Envío de Caso
+    </a>
 
-<footer class="footer">
-Todos los derechos reservados | Propiedad de Inveasyble | Created by Joseph Morales
-</footer>
+    <a href="#">
+        📦 Ver Planes de Tratamiento
+    </a>
+
+    <a href="#">
+        🔄 Ver Flujo de Trabajo
+    </a>
+
+    <a href="#">
+        📜 Términos y Condiciones
+    </a>
+
+    <a href="#">
+        📝 Contrato
+    </a>
+
+    <a href="#">
+        📅 Calendario de Alineadores
+    </a>
+</div>
 
 </body>
 </html>
