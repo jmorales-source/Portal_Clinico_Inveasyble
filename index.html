@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Clínico Dental</title>
+
 <style>
 body {
     margin: 0;
@@ -23,7 +30,6 @@ body {
     border-radius: 18px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.4);
     margin-top: 50px;
-    backdrop-filter: blur(5px);
 }
 
 .logo {
@@ -60,7 +66,7 @@ input {
     font-style: italic;
 }
 
-/* 🎨 BOTON CON GRADIENTE OFICIAL */
+/* BOTON CON GRADIENTE OFICIAL */
 button {
     width: 100%;
     padding: 12px;
@@ -99,6 +105,7 @@ button:hover {
     margin-top: 15px;
 }
 
+/* LINKS */
 .links-externos {
     margin-top: 35px;
     text-align: center;
@@ -118,6 +125,7 @@ button:hover {
     opacity: 0.8;
 }
 
+/* BOTON INFERIOR DERECHO */
 .materiales-btn {
     position: fixed;
     bottom: 20px;
@@ -146,3 +154,131 @@ button:hover {
     width: 100%;
 }
 </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo"></div>
+
+    <h2>Consulta de Casos Dentales</h2>
+
+    <input type="text" id="doctorInput" placeholder="Ingrese su nombre completo + ID Unico">
+
+    <div class="ejemplo">
+        Ejemplo: Maria Lopez 1234 (sin tildes y espacio)
+    </div>
+
+    <button onclick="buscarCasos()">Consultar</button>
+
+    <div id="resultados"></div>
+
+</div>
+
+<div class="links-externos">
+
+    <a href="https://inveasyble.com/enviar-caso-nuevo/" target="_blank">
+        📄 Formulario de Envío de Caso
+    </a>
+
+    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/T%C3%89RMINOS%20Y%20CONDICIONES%20INVEASYBLE.pdf" target="_blank">
+        📜 Términos y Condiciones
+    </a>
+
+    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Contrato%20por%20servicios%20de%20ortodoncia%20con%20alineadores.pdf" target="_blank">
+        📝 Contrato de Servicios
+    </a>
+
+    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Calculo%20de%20Alineadores.xlsx" target="_blank">
+        📅 Calendario de Alineadores
+    </a>
+
+    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">
+        📊 Ver Planes
+    </a>
+
+    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Flujo%20de%20trabajo.jpeg" target="_blank">
+        🔄 Flujo de Trabajo
+    </a>
+
+</div>
+
+<a class="materiales-btn"
+   href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar"
+   target="_blank">
+   📦 Materiales Mercadeo
+</a>
+
+<footer class="footer">
+Todos los derechos reservados | Propiedad de Inveasyble | Created by Joseph Morales
+</footer>
+
+<script>
+const apiURL = "https://script.google.com/macros/s/AKfycbzhtXgRQG_QB5leP_Aq3Lf7XMAE-dV4PwjkseFsT3Ee3H-pKD9zfHAux6KpCb8oKKaeyw/exec";
+
+function formatearFecha(fecha) {
+    if (!fecha) return "";
+    const f = new Date(fecha);
+    return f.toLocaleDateString("es-CR");
+}
+
+async function buscarCasos() {
+    const doctorInput = document.getElementById("doctorInput").value.trim();
+    const resultadosDiv = document.getElementById("resultados");
+
+    if (doctorInput === "") {
+        resultadosDiv.innerHTML = "<div class='mensaje'>Ingrese datos correctamente.</div>";
+        return;
+    }
+
+    resultadosDiv.innerHTML = "<div class='mensaje'>Consultando...</div>";
+
+    try {
+        const response = await fetch(`${apiURL}?doctor=${encodeURIComponent(doctorInput)}`);
+        const data = await response.json();
+
+        const coincidenciasExactas = data.filter(item =>
+            item.doctor === doctorInput
+        );
+
+        if (!coincidenciasExactas.length) {
+            resultadosDiv.innerHTML = `
+                <div class='mensaje'>
+                    Ingrese datos correctamente.<br><br>
+                    Si no posee usuario, solicitar acceso al correo:<br>
+                    <strong>info@inveasyble.com</strong>
+                </div>
+            `;
+            return;
+        }
+
+        let html = "";
+        coincidenciasExactas.forEach(item => {
+            html += `
+                <div class="caso">
+                    <div><span class="label">Paciente:</span> ${item.paciente || ""}</div>
+                    <div><span class="label">Fecha de entrega:</span> ${formatearFecha(item.fechaEntrega)}</div>
+                    <div><span class="label">Cantidad de alineadores U/L:</span> ${item.cantidadAlineadores || ""}</div>
+                    <div><span class="label">Plan:</span> ${item.planes || ""}</div>
+                    <div><span class="label">Estatus del caso:</span> ${item.estatus || ""}</div>
+                </div>
+            `;
+        });
+
+        resultadosDiv.innerHTML = html;
+
+    } catch (error) {
+        resultadosDiv.innerHTML = `
+            <div class='mensaje'>
+                Error al conectar con el servidor.<br>
+                Intente nuevamente o contacte a <strong>info@inveasyble.com</strong>
+            </div>
+        `;
+        console.error(error);
+    }
+}
+</script>
+
+</body>
+</html>
