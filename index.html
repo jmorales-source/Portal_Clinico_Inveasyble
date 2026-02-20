@@ -31,7 +31,7 @@ body {
     height: 180px;
     border-radius: 16px;
     margin-bottom: 25px;
-    background-image: url('https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/fa90a0182b47a0065cd1d848e240fca9d6941ae6/InvEasyble-Logo-RGB.png');
+    background-image: url('https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/eb490604fd29990b9904b81d3148c1de2664798a/Inveasyble2.png');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
@@ -57,7 +57,6 @@ input {
     color: #9aa4ad;
     margin-top: 6px;
     margin-bottom: 20px;
-    padding-left: 2px;
     font-style: italic;
 }
 
@@ -97,7 +96,7 @@ button:hover {
     margin-top: 15px;
 }
 
-/* LINKS EN PARTE AZUL */
+/* LINKS EN AZUL */
 .links-externos {
     margin-top: 35px;
     text-align: center;
@@ -113,6 +112,25 @@ button:hover {
 
 .links-externos a:hover {
     text-decoration: underline;
+}
+
+/* BOTON INFERIOR DERECHO */
+.materiales-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00c6ff;
+    color: #0f2027;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.materiales-btn:hover {
+    background: #ffffff;
 }
 
 .footer {
@@ -147,7 +165,7 @@ button:hover {
 
 </div>
 
-<!-- TODO FUERA DEL CUADRO BLANCO -->
+<!-- LINKS EN PARTE AZUL -->
 <div class="links-externos">
 
     <a href="https://inveasyble.com/enviar-caso-nuevo/" target="_blank">
@@ -166,10 +184,6 @@ button:hover {
         📅 Calendario de Alineadores
     </a>
 
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar" target="_blank">
-        📦 Descargar Materiales
-    </a>
-
     <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">
         📊 Ver Planes
     </a>
@@ -179,6 +193,13 @@ button:hover {
     </a>
 
 </div>
+
+<!-- BOTON MATERIAL -->
+<a class="materiales-btn"
+   href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar"
+   target="_blank">
+   📦 Materiales Mercadeo
+</a>
 
 <footer class="footer">
 Todos los derechos reservados | Propiedad de Inveasyble | Created by Joseph Morales
@@ -194,7 +215,6 @@ function formatearFecha(fecha) {
 }
 
 async function buscarCasos() {
-
     const doctorInput = document.getElementById("doctorInput").value.trim();
     const resultadosDiv = document.getElementById("resultados");
 
@@ -213,7 +233,7 @@ async function buscarCasos() {
             item.doctor === doctorInput
         );
 
-        if (!coincidenciasExactas || coincidenciasExactas.length === 0) {
+        if (!coincidenciasExactas.length) {
             resultadosDiv.innerHTML = `
                 <div class='mensaje'>
                     Ingrese datos correctamente.<br><br>
@@ -225,7 +245,6 @@ async function buscarCasos() {
         }
 
         let html = "";
-
         coincidenciasExactas.forEach(item => {
             html += `
                 <div class="caso">
