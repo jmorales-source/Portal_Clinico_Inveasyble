@@ -139,28 +139,23 @@ button:hover {
     </div>
 
     <button onclick="buscarCasos()">Consultar</button>
+
+    <!-- 🔎 Buscador interno tipo CTRL+F -->
+    <input type="text" 
+           id="buscarPaciente" 
+           placeholder="Buscar paciente dentro de los resultados..." 
+           onkeyup="filtrarPacientes()" 
+           style="display:none;">
+
     <div id="resultados"></div>
 </div>
-
-<div class="links-externos">
-    <a href="https://inveasyble.com/enviar-caso/" target="_blank">📄 Formulario de Envío de Caso</a>
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/T%C3%89RMINOS%20Y%20CONDICIONES%20INVEASYBLE.pdf" target="_blank">📜 Términos y Condiciones</a>
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Contrato%20por%20servicios%20de%20ortodoncia%20con%20alineadores.pdf" target="_blank">📝 Contrato de Servicios</a>
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Calculo%20de%20Alineadores.xlsx" target="_blank">📅 Calendario de Alineadores</a>
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Paquetes.jpeg" target="_blank">📊 Ver Planes</a>
-    <a href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Flujo%20de%20trabajo.jpeg" target="_blank">🔄 Flujo de Trabajo</a>
-</div>
-
-<a class="materiales-btn" href="https://raw.githubusercontent.com/jmorales-source/inveasyble-website-assets/72232886313b7c8e29be92cb21a3eb346c4ddb6b/Material.rar" target="_blank">
-📦 Materiales Mercadeo
-</a>
 
 <footer class="footer">
 Todos los derechos reservados | Propiedad de Inveasyble | Created by Joseph Morales
 </footer>
 
 <script>
-const apiURL = "https://script.google.com/macros/s/AKfycbw-MKYhxCV3Tclk_i34LcburOCKQClZCfkxUgWTLW6-EzsfuQViCfpM4zwKmP-foTG9/exec";
+const apiURL = "https://script.google.com/macros/s/AKfycbwcU-oMVPbkLxvbNcq8nT6dANqewbzsZvvONqrG0XD9HujZI4vtOv7IEsw7pbviy6Jm/exec";
 
 function formatearFecha(fecha) {
     if (!fecha) return "";
@@ -171,6 +166,10 @@ function formatearFecha(fecha) {
 async function buscarCasos() {
     const doctorInput = document.getElementById("doctorInput").value.trim();
     const resultadosDiv = document.getElementById("resultados");
+    const buscadorPaciente = document.getElementById("buscarPaciente");
+
+    buscadorPaciente.style.display = "none";
+    buscadorPaciente.value = "";
 
     if (doctorInput === "") {
         resultadosDiv.innerHTML = "<div class='mensaje'>Ingrese datos correctamente.</div>";
@@ -212,6 +211,9 @@ async function buscarCasos() {
 
         resultadosDiv.innerHTML = html;
 
+        // Mostrar buscador interno
+        buscadorPaciente.style.display = "block";
+
     } catch (error) {
         resultadosDiv.innerHTML = `
             <div class='mensaje'>
@@ -222,10 +224,21 @@ async function buscarCasos() {
         console.error(error);
     }
 }
+
+function filtrarPacientes() {
+    const filtro = document.getElementById("buscarPaciente").value.toLowerCase();
+    const casos = document.querySelectorAll(".caso");
+
+    casos.forEach(caso => {
+        const texto = caso.innerText.toLowerCase();
+        if (texto.includes(filtro)) {
+            caso.style.display = "block";
+        } else {
+            caso.style.display = "none";
+        }
+    });
+}
 </script>
 
 </body>
 </html>
-
-
-
