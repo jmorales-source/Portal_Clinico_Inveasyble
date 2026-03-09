@@ -162,14 +162,14 @@ Todos los derechos reservados | Propiedad de Inveasyble | Created by Joseph Mora
 
 <script>
 
-const apiURL = "https://script.google.com/macros/s/AKfycbwehmFKWbo4WV8K_br0JiAIQE6Wy1krL894eWaJyAyuWg71j1TTsXpPLRnbw0r-5z9E/exec";
+const apiURL = "https://script.google.com/macros/s/AKfycbz3tDRxq6xr8aDTk_IGJISEBbrLOlShDaIVZ37a9DxfufbNYiTEbvxGLO631ZcpjXO9/exec";
 
 let casosGuardados = [];
 
 function formatearFecha(fecha) {
   if (!fecha) return "";
-  const f = new Date(fecha);
-  return f.toLocaleDateString("es-CR");
+  const partes = fecha.split("-");
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
 async function buscarCasos() {
@@ -244,7 +244,7 @@ function mostrarCasos(lista) {
         <div><span class="label">Fecha de entrega:</span> ${formatearFecha(item.fechaEntrega)}</div>
         <div><span class="label">Cantidad de alineadores U/L:</span> ${item.ul || ""}</div>
         <div><span class="label">Plan:</span> ${item.paquete || ""}</div>
-        <div><span class="label">Estatus del caso:</span> ${item.estado || ""}</div>
+        <div><span class="label">Estatus del caso:</span> ${item.estatus || ""}</div>
       </div>
     `;
   });
@@ -267,5 +267,3 @@ function filtrarPacientes() {
 
 </body>
 </html>
-
-
